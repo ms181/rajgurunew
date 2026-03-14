@@ -1,0 +1,230 @@
+/* ============================================================
+   RAJGURU — blog-post.css
+   Styles for the /blog/[slug] individual post page.
+   ============================================================ */
+
+@import "tailwindcss";
+
+
+/* ─────────────────────────────────────────
+   TOKENS
+───────────────────────────────────────── */
+
+:root {
+  --color-brand:       #177DAD;
+  --color-brand-dark:  #1369A0;
+  --color-navy:        #0F172A;
+  --color-slate-dark:  #334155;
+  --color-slate:       #64748B;
+  --color-slate-light: #94A3B8;
+  --color-border:      #E2E8F0;
+  --color-surface:     #F8FAFC;
+}
+
+
+/* ─────────────────────────────────────────
+   SHARED
+───────────────────────────────────────── */
+
+.page {
+  @apply bg-white min-h-screen;
+  font-family: 'Inter', sans-serif;
+}
+
+.btn {
+  @apply inline-flex items-center gap-2 text-sm font-semibold rounded-md transition-colors whitespace-nowrap cursor-pointer;
+}
+
+.btn--primary {
+  @apply bg-[#177DAD] text-white px-5 py-2.5 hover:bg-[#1369A0];
+}
+
+
+/* ─────────────────────────────────────────
+   NAVBAR
+───────────────────────────────────────── */
+
+.navbar {
+  @apply flex justify-center border-b border-[#E2E8F0] bg-white sticky top-0 z-50;
+}
+
+.navbar__inner {
+  @apply flex items-center justify-between w-full max-w-[1280px] px-6 py-3;
+}
+
+.navbar__logo {
+  @apply flex items-center gap-2 shrink-0 no-underline;
+}
+
+.navbar__logo-text {
+  @apply flex flex-col;
+}
+
+.navbar__logo-name {
+  @apply text-[#177DAD] font-bold text-sm leading-none tracking-wide;
+}
+
+.navbar__logo-tagline {
+  @apply text-[#64748B] text-[9px] leading-tight mt-0.5;
+}
+
+.navbar__links {
+  @apply hidden md:flex items-center gap-7;
+}
+
+.navbar__link {
+  @apply text-[#334155] text-sm font-medium hover:text-[#177DAD] transition-colors whitespace-nowrap no-underline;
+}
+
+
+/* ─────────────────────────────────────────
+   COVER HERO
+───────────────────────────────────────── */
+
+.cover-hero {
+  @apply relative w-full h-[420px] flex items-end overflow-hidden;
+}
+
+.cover-hero__image {
+  @apply absolute inset-0;
+  background: linear-gradient(135deg, #1E3A5F 0%, #0F172A 100%);
+}
+
+.cover-hero__overlay {
+  @apply absolute inset-0;
+  background: linear-gradient(to top, rgba(15,23,42,0.95) 0%, rgba(15,23,42,0.4) 60%, transparent 100%);
+}
+
+.cover-hero__content {
+  @apply relative z-10 w-full max-w-[1280px] mx-auto px-6 pb-12 flex flex-col gap-4;
+}
+
+.cover-hero__back {
+  @apply inline-flex items-center gap-2
+         text-[#94A3B8] text-sm font-medium
+         hover:text-white transition-colors no-underline
+         mb-2;
+}
+
+.cover-hero__category {
+  @apply text-[#177DAD] text-xs font-semibold tracking-[0.15em] uppercase
+         bg-[#177DAD]/10 border border-[#177DAD]/30
+         px-3 py-1 rounded-full w-fit;
+}
+
+.cover-hero__title {
+  @apply text-white text-3xl md:text-4xl font-bold leading-tight max-w-[700px];
+}
+
+.cover-hero__meta {
+  @apply flex items-center flex-wrap gap-2 text-[#94A3B8] text-sm;
+}
+
+.cover-hero__meta-item {
+  @apply flex items-center gap-1.5;
+}
+
+.cover-hero__meta-divider {
+  @apply w-px h-3 bg-[#334155];
+}
+
+
+/* ─────────────────────────────────────────
+   POST BODY LAYOUT
+───────────────────────────────────────── */
+
+.post-body {
+  @apply max-w-[1280px] mx-auto px-6 py-14;
+}
+
+.post-article {
+  @apply max-w-[740px] mx-auto;
+}
+
+
+/* ─────────────────────────────────────────
+   CONTENT RENDERER WRAPPER
+───────────────────────────────────────── */
+
+.content-body {
+  @apply flex flex-col gap-6;
+}
+
+
+/* ─────────────────────────────────────────
+   BLOCK: IMAGE
+───────────────────────────────────────── */
+
+.block-image {
+  @apply w-full my-4 flex flex-col gap-3;
+}
+
+.block-image__frame {
+  @apply w-full rounded-xl overflow-hidden border border-[#E2E8F0];
+}
+
+.block-image__placeholder {
+  @apply w-full h-64 bg-[#F8FAFC] flex items-center justify-center;
+  background: linear-gradient(135deg, #CBD5E1 0%, #94A3B8 100%);
+}
+
+.block-image__caption {
+  @apply text-[#64748B] text-xs text-center leading-relaxed italic;
+}
+
+
+/* ─────────────────────────────────────────
+   BLOCK: HEADING
+───────────────────────────────────────── */
+
+.block-heading {
+  @apply text-2xl font-bold text-[#0F172A] leading-tight mt-4;
+}
+
+
+/* ─────────────────────────────────────────
+   BLOCK: SUBHEADING
+───────────────────────────────────────── */
+
+.block-subheading {
+  @apply text-lg font-semibold text-[#0F172A] leading-snug mt-2;
+}
+
+
+/* ─────────────────────────────────────────
+   BLOCK: PARAGRAPH
+───────────────────────────────────────── */
+
+.block-para {
+  @apply text-[#334155] text-base;
+  line-height: 1.8;
+}
+
+
+/* ─────────────────────────────────────────
+   BLOCK: BLOCKS GRID
+───────────────────────────────────────── */
+
+.blocks-grid {
+  @apply grid gap-4 my-4;
+}
+
+.blocks-grid--2 {
+  @apply grid-cols-1 md:grid-cols-2;
+}
+
+.blocks-grid--3 {
+  @apply grid-cols-1 md:grid-cols-3;
+}
+
+.blocks-card {
+  @apply bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-6 flex flex-col gap-2;
+}
+
+.blocks-card__subheading {
+  @apply text-[#0F172A] font-semibold text-sm;
+}
+
+.blocks-card__para {
+  @apply text-[#64748B] text-sm leading-relaxed;
+}

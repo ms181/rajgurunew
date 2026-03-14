@@ -1,0 +1,306 @@
+[
+  {
+    "slug": "wifi-6-enterprise-deployment-guide",
+    "title": "The Complete Guide to Enterprise Wi-Fi 6 & 7 Deployments",
+    "excerpt": "Learn how OFDMA, MU-MIMO, and BSS Colouring transform high-density wireless deployments — and what to plan before a single AP hits the ceiling.",
+    "coverImage": "/images/blog/wifi6-cover.jpg",
+    "author": "Rajguru Technical Team",
+    "date": "March 10, 2025",
+    "readTime": "8 min read",
+    "category": "Networking",
+    "content": [
+      {
+        "type": "image",
+        "data": {
+          "src": "/images/blog/wifi6-cover.jpg",
+          "alt": "UniFi Wi-Fi 6 access point mounted on an office ceiling",
+          "caption": "Ubiquiti UniFi U6 Pro deployed in a large enterprise open-plan office"
+        }
+      },
+      {
+        "type": "heading",
+        "data": { "text": "Why Wi-Fi 6 and 7 Matter for Your Business" }
+      },
+      {
+        "type": "para",
+        "data": { "text": "Modern enterprises depend on wireless connectivity for everything from video conferencing to IoT sensors on the factory floor. Wi-Fi 6 (802.11ax) and the emerging Wi-Fi 7 (802.11be) standard represent a fundamental shift in how wireless networks handle density, throughput, and latency — making them essential for any organisation planning infrastructure for the next decade." }
+      },
+      {
+        "type": "para",
+        "data": { "text": "Unlike previous generations that focused purely on raw speed, Wi-Fi 6 introduces OFDMA and MU-MIMO enhancements that allow a single access point to serve dozens of clients simultaneously without degradation. This is the key distinction for high-density environments like conference halls, warehouses, and open-plan offices." }
+      },
+      {
+        "type": "subheading",
+        "data": { "text": "Key Technical Improvements Over Wi-Fi 5" }
+      },
+      {
+        "type": "para",
+        "data": { "text": "Wi-Fi 6 delivers up to 9.6 Gbps theoretical throughput — nearly triple Wi-Fi 5 — but the real-world gains come from efficiency improvements. Target Wake Time (TWT) dramatically extends battery life on IoT devices by scheduling when devices wake to send or receive data, reducing congestion and power consumption in one stroke." }
+      },
+      {
+        "type": "blocks",
+        "data": {
+          "layout": "3-col",
+          "items": [
+            {
+              "subheading": "OFDMA Technology",
+              "para": "Splits each channel into smaller sub-channels, allowing simultaneous transmission to multiple devices and dramatically reducing latency in crowded environments."
+            },
+            {
+              "subheading": "MU-MIMO (8×8)",
+              "para": "Serves up to eight devices at once with full spatial streams, compared to four in Wi-Fi 5 — ideal for high-density deployments like auditoriums and trading floors."
+            },
+            {
+              "subheading": "BSS Colouring",
+              "para": "Reduces interference from neighbouring networks by tagging transmissions with a colour identifier, allowing overlapping networks to coexist without stepping on each other."
+            }
+          ]
+        }
+      },
+      {
+        "type": "heading",
+        "data": { "text": "Planning Your Deployment: A Structured Approach" }
+      },
+      {
+        "type": "para",
+        "data": { "text": "A successful Wi-Fi 6 rollout starts long before any hardware is mounted on a ceiling. The planning phase — site surveys, capacity modelling, and VLAN architecture — determines whether your investment pays off. Rushing this step is the single most common cause of poor wireless performance, regardless of equipment quality." }
+      },
+      {
+        "type": "subheading",
+        "data": { "text": "Step 1 — RF Site Survey" }
+      },
+      {
+        "type": "para",
+        "data": { "text": "An RF site survey maps signal propagation across your floor plan, accounting for walls, glass partitions, elevator shafts, and other obstructions. The output is a heat map that drives AP placement decisions. For large facilities, predictive surveys using software like Ekahau are run before installation, followed by a validation survey post-deployment." }
+      },
+      {
+        "type": "blocks",
+        "data": {
+          "layout": "2-col",
+          "items": [
+            {
+              "subheading": "Indoor Deployments",
+              "para": "Use the UniFi U6 Pro for high-density indoor spaces. Mount at ceiling height of 2.5–4m, maintaining a 15–20m coverage radius per AP in standard office environments."
+            },
+            {
+              "subheading": "Outdoor Deployments",
+              "para": "The UniFi U6 Mesh handles outdoor areas including parking lots, courtyards, and building exteriors with mesh backhaul support and IP67 weatherproofing."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "slug": "vlan-segmentation-unifi",
+    "title": "VLAN Segmentation with UniFi: A Practical Walkthrough",
+    "excerpt": "A flat network is a security liability. This guide walks through designing and implementing a clean VLAN architecture using UniFi Controller from scratch.",
+    "coverImage": "/images/blog/vlan-cover.jpg",
+    "author": "Rajguru Technical Team",
+    "date": "February 24, 2025",
+    "readTime": "6 min read",
+    "category": "Security",
+    "content": [
+      {
+        "type": "image",
+        "data": {
+          "src": "/images/blog/vlan-cover.jpg",
+          "alt": "Network switch with labelled VLAN connections",
+          "caption": "Clean VLAN architecture starts with a well-labelled physical layer"
+        }
+      },
+      {
+        "type": "heading",
+        "data": { "text": "Why a Flat Network Is a Risk" }
+      },
+      {
+        "type": "para",
+        "data": { "text": "On a flat network, every device shares the same broadcast domain. A compromised laptop, a rogue IoT sensor, or a guest device can reach your file servers, printers, and management interfaces without any barrier. VLAN segmentation is the first and most effective layer of internal network security." }
+      },
+      {
+        "type": "subheading",
+        "data": { "text": "Designing Your VLAN Map" }
+      },
+      {
+        "type": "para",
+        "data": { "text": "Before touching the UniFi Controller, sketch your traffic groups on paper. A common enterprise layout separates corporate devices, guest Wi-Fi, IoT and building systems, VoIP, and management traffic into distinct VLANs — each with its own firewall rules governing inter-VLAN communication." }
+      },
+      {
+        "type": "blocks",
+        "data": {
+          "layout": "3-col",
+          "items": [
+            {
+              "subheading": "VLAN 10 — Corporate",
+              "para": "All employee devices: laptops, workstations, corporate phones. Full internet access, restricted inter-VLAN routing. 802.1X authentication recommended."
+            },
+            {
+              "subheading": "VLAN 20 — Guest",
+              "para": "Visitor devices with internet-only access. Client isolation enabled. Rate-limited per client. DNS filtered via UniFi's built-in content filtering or an external resolver."
+            },
+            {
+              "subheading": "VLAN 30 — IoT",
+              "para": "Cameras, access control, HVAC sensors, smart TVs. No internet access by default. Strict firewall rules. Monitored with UniFi Threat Management for anomalous behaviour."
+            }
+          ]
+        }
+      },
+      {
+        "type": "heading",
+        "data": { "text": "Configuring VLANs in UniFi Controller" }
+      },
+      {
+        "type": "para",
+        "data": { "text": "Open the UniFi Network application and navigate to Settings → Networks. Create a new network for each VLAN, assigning the correct VLAN ID, subnet, and DHCP range. For wireless VLANs, create a dedicated SSID and bind it to the corresponding network under WiFi settings." }
+      },
+      {
+        "type": "subheading",
+        "data": { "text": "Firewall Rules That Actually Matter" }
+      },
+      {
+        "type": "para",
+        "data": { "text": "The most critical rule: block inter-VLAN routing by default, then explicitly allow only what is needed. In UniFi, set a LAN In rule dropping traffic from Guest and IoT networks destined for the Corporate subnet. Add specific allow rules for approved flows — such as IoT cameras reaching the NVR on the Corporate VLAN." }
+      },
+      {
+        "type": "blocks",
+        "data": {
+          "layout": "2-col",
+          "items": [
+            {
+              "subheading": "LAN In Rules",
+              "para": "Applied to traffic entering the gateway from a LAN segment. Use these to block inter-VLAN communication and prevent Guest/IoT devices from reaching sensitive subnets."
+            },
+            {
+              "subheading": "LAN Local Rules",
+              "para": "Applied to traffic destined for the gateway itself. Use these to block Guest and IoT clients from accessing the UniFi Controller and management interfaces."
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "slug": "unifi-protect-camera-setup",
+    "title": "Setting Up UniFi Protect: Cameras, NVR, and Remote Access",
+    "excerpt": "UniFi Protect turns your UniFi infrastructure into a full surveillance system. Here's how to plan camera placement, configure the NVR, and enable secure remote viewing.",
+    "coverImage": "/images/blog/protect-cover.jpg",
+    "author": "Rajguru Technical Team",
+    "date": "February 5, 2025",
+    "readTime": "5 min read",
+    "category": "Security",
+    "content": [
+      {
+        "type": "image",
+        "data": {
+          "src": "/images/blog/protect-cover.jpg",
+          "alt": "UniFi Protect camera mounted at building entrance",
+          "caption": "UniFi G4 Bullet camera at a commercial building entrance, powered by PoE"
+        }
+      },
+      {
+        "type": "heading",
+        "data": { "text": "What is UniFi Protect?" }
+      },
+      {
+        "type": "para",
+        "data": { "text": "UniFi Protect is Ubiquiti's video surveillance platform, tightly integrated with the rest of the UniFi ecosystem. It runs on a UniFi Console (Dream Machine Pro, Cloud Key Gen2 Plus, or dedicated NVR) and manages IP cameras, motion detection, and recordings from a single interface — both locally and via the Ubiquiti mobile app." }
+      },
+      {
+        "type": "subheading",
+        "data": { "text": "Camera Placement Principles" }
+      },
+      {
+        "type": "para",
+        "data": { "text": "Effective surveillance starts with coverage planning. Identify all entry and exit points first — these are non-negotiable. Then address high-value areas: server rooms, cash handling points, and loading docks. Finally, fill in corridor coverage for movement tracking. Aim for camera overlap at critical points so there are no blind spots if one camera is obstructed." }
+      },
+      {
+        "type": "blocks",
+        "data": {
+          "layout": "3-col",
+          "items": [
+            {
+              "subheading": "G4 Bullet",
+              "para": "Best for outdoor perimeter and long-range coverage. IP67 rated, 4MP, IR night vision up to 50m. Ideal for parking lots and building exteriors."
+            },
+            {
+              "subheading": "G4 Dome",
+              "para": "Vandal-resistant indoor/outdoor dome. Wide 100° field of view. Perfect for lobbies, corridors, and retail floors where aesthetic and durability both matter."
+            },
+            {
+              "subheading": "G4 PTZ",
+              "para": "Pan-tilt-zoom for large open areas requiring active monitoring. 22× optical zoom. Used in warehouses, car parks, and perimeter walls where operators actively track movement."
+            }
+          ]
+        }
+      },
+      {
+        "type": "heading",
+        "data": { "text": "NVR Sizing and Storage Planning" }
+      },
+      {
+        "type": "para",
+        "data": { "text": "Storage requirements depend on three factors: camera count, resolution, and retention period. A 4MP camera recording continuously at high quality consumes roughly 40–60 GB per day. For a 16-camera deployment with 30-day retention, plan for 20–30 TB of usable storage. The UniFi NVR supports RAID configurations — always use RAID 1 or 5 in production to protect against drive failure." }
+      }
+    ]
+  },
+  {
+    "slug": "managed-vs-unmanaged-switches",
+    "title": "Managed vs Unmanaged Switches: Which Does Your Business Actually Need?",
+    "excerpt": "Not every business needs a fully managed switch — but most do. We break down the real differences, when each makes sense, and why UniFi's approach simplifies the decision.",
+    "coverImage": "/images/blog/switches-cover.jpg",
+    "author": "Rajguru Technical Team",
+    "date": "January 20, 2025",
+    "readTime": "4 min read",
+    "category": "Infrastructure",
+    "content": [
+      {
+        "type": "image",
+        "data": {
+          "src": "/images/blog/switches-cover.jpg",
+          "alt": "Network rack with managed switches and patch panel",
+          "caption": "A properly organised network rack with UniFi managed switches and structured cabling"
+        }
+      },
+      {
+        "type": "heading",
+        "data": { "text": "The Core Difference" }
+      },
+      {
+        "type": "para",
+        "data": { "text": "An unmanaged switch is plug-and-play. Every port forwards traffic on the same network, there is no configuration interface, and there are no features beyond basic Layer 2 switching. A managed switch gives you full control: VLANs, port-level security, QoS, link aggregation, STP configuration, and SNMP monitoring." }
+      },
+      {
+        "type": "subheading",
+        "data": { "text": "When Unmanaged Is Fine" }
+      },
+      {
+        "type": "para",
+        "data": { "text": "For a home office or a very small business with five or fewer devices all on the same network and no security requirements beyond the router firewall, an unmanaged switch is perfectly adequate and significantly cheaper. The moment you need guest Wi-Fi, VoIP, or any form of network segmentation, you need managed." }
+      },
+      {
+        "type": "blocks",
+        "data": {
+          "layout": "2-col",
+          "items": [
+            {
+              "subheading": "Unmanaged Switches",
+              "para": "Pros: cheap, zero configuration, reliable. Cons: no VLANs, no QoS, no monitoring, no security features. Suitable for simple home or micro-business setups only."
+            },
+            {
+              "subheading": "Managed Switches",
+              "para": "Pros: full VLAN support, QoS for VoIP, port security, link aggregation, remote management. Cons: higher cost, requires configuration. Essential for any professional deployment."
+            }
+          ]
+        }
+      },
+      {
+        "type": "heading",
+        "data": { "text": "Why UniFi Managed Switches Stand Out" }
+      },
+      {
+        "type": "para",
+        "data": { "text": "Traditional managed switches require CLI knowledge or a separate management platform. UniFi integrates switch management directly into the same Controller interface used for Wi-Fi, routing, and cameras. VLAN profiles created for your wireless network automatically apply to switch ports — no duplicate configuration, no mismatches, no CLI required." }
+      }
+    ]
+  }
+]

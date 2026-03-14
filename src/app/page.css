@@ -1,0 +1,489 @@
+/* ============================================================
+   RAJGURU — page.css
+   All styles written with Tailwind @apply directives.
+   Import this file at the top of page.js.
+   ============================================================ */
+
+@import "tailwindcss";
+
+
+/* ─────────────────────────────────────────
+   DESIGN TOKENS
+───────────────────────────────────────── */
+
+:root {
+    --color-brand: #177DAD;
+    --color-brand-dark: #1369A0;
+    --color-navy: #0F172A;
+    --color-navy-soft: #1E293B;
+    --color-slate-dark: #334155;
+    --color-slate: #64748B;
+    --color-slate-light: #94A3B8;
+    --color-border: #E2E8F0;
+    --color-surface: #F8FAFC;
+    --color-white: #ffffff;
+
+    --max-width: 1280px;
+    --section-py: theme('spacing.20');
+    --container-px: theme('spacing.6');
+}
+
+
+/* ─────────────────────────────────────────
+   SHARED / UTILITY CLASSES
+───────────────────────────────────────── */
+
+.page {
+    @apply bg-white min-h-screen;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Container helper used across sections */
+.container {
+    @apply w-full max-w-[1280px] mx-auto px-6;
+}
+
+/* Section eyebrow label */
+.section-eyebrow {
+    @apply text-[#177DAD] text-xs font-semibold tracking-[0.15em] uppercase mb-3;
+}
+
+/* Section main heading */
+.section-heading {
+    @apply text-3xl font-bold text-[#0F172A] leading-tight;
+}
+
+/* Section subtitle / descriptive text */
+.section-subtext {
+    @apply text-[#64748B] text-base leading-relaxed;
+}
+
+/* Centered section header block */
+.section-header {
+    @apply text-center mb-12 flex flex-col items-center gap-1;
+}
+
+/* ── Buttons ── */
+.btn {
+    @apply inline-flex items-center gap-2 text-sm font-semibold rounded-md transition-colors whitespace-nowrap cursor-pointer;
+}
+
+.btn--primary {
+    @apply bg-[#177DAD] text-white px-5 py-2.5 hover:bg-[#1369A0];
+}
+
+.btn--outline {
+    @apply text-white border border-white/25 px-5 py-2.5 hover:border-white/50;
+}
+
+
+/* ─────────────────────────────────────────
+   NAVBAR
+───────────────────────────────────────── */
+
+.navbar {
+    @apply flex justify-center border-b border-[#E2E8F0] bg-white sticky top-0 z-50;
+}
+
+.navbar__inner {
+    @apply flex items-center justify-between w-full max-w-[1280px] px-6 py-3;
+}
+
+.navbar__logo {
+    @apply flex items-center gap-2 shrink-0;
+}
+
+.navbar__logo-text {
+    @apply flex flex-col;
+}
+
+.navbar__logo-name {
+    @apply text-[#177DAD] font-bold text-sm leading-none tracking-wide;
+}
+
+.navbar__logo-tagline {
+    @apply text-[#64748B] text-[9px] leading-tight mt-0.5;
+}
+
+.navbar__links {
+    @apply hidden md:flex items-center gap-7;
+}
+
+.navbar__link {
+    @apply text-[#334155] text-sm font-medium hover:text-[#177DAD] transition-colors whitespace-nowrap;
+}
+
+
+/* ─────────────────────────────────────────
+   HERO
+───────────────────────────────────────── */
+
+.hero {
+    @apply bg-[#0F172A] text-white;
+}
+
+.hero__inner {
+    @apply flex items-center max-w-[1280px] mx-auto px-6 py-20 gap-16;
+}
+
+.hero__content {
+    @apply flex-1 min-w-0 flex flex-col;
+}
+
+.hero__heading {
+    @apply text-5xl font-bold leading-[1.1] mb-6 text-white;
+}
+
+.hero__subtext {
+    @apply text-[#94A3B8] text-base leading-relaxed mb-8 max-w-[420px];
+}
+
+.hero__actions {
+    @apply flex items-center gap-4 flex-wrap;
+}
+
+.hero__image-wrap {
+    @apply flex-1 min-w-0 hidden md:flex justify-end;
+}
+
+/* Hero decorative visual */
+.hero__visual {
+    @apply w-full max-w-[540px] h-[340px] rounded-2xl overflow-hidden bg-[#1E3A5F] relative;
+}
+
+.hero__visual-noise {
+    @apply absolute inset-0 opacity-40;
+    background: repeating-linear-gradient(0deg,
+            transparent,
+            transparent 2px,
+            rgba(23, 125, 173, 0.05) 2px,
+            rgba(23, 125, 173, 0.05) 4px);
+}
+
+.hero__visual-gradient {
+    @apply absolute inset-0;
+    background: linear-gradient(135deg,
+            rgba(23, 125, 173, 0.2) 0%,
+            transparent 50%,
+            rgba(15, 23, 42, 0.8) 100%);
+}
+
+.hero__visual-grid {
+    @apply absolute inset-0 flex items-center justify-center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: theme('spacing.3');
+    padding: theme('spacing.8');
+}
+
+.hero__visual-node {
+    @apply w-10 h-10 rounded-full border-2 border-[#177DAD]/40 flex items-center justify-center;
+}
+
+.hero__visual-dot {
+    @apply w-3 h-3 rounded-full bg-[#177DAD];
+}
+
+
+/* ─────────────────────────────────────────
+   ABOUT
+───────────────────────────────────────── */
+
+.about {
+    @apply bg-white py-20;
+}
+
+.about__inner {
+    @apply max-w-[1280px] mx-auto px-6 flex items-center gap-16;
+}
+
+.about__image {
+    @apply flex-1 min-w-0 hidden md:block;
+}
+
+.about__image-placeholder {
+    @apply rounded-2xl overflow-hidden h-80 relative flex items-end p-6;
+    background: linear-gradient(135deg, #CBD5E1, #94A3B8);
+}
+
+.about__image-grid {
+    @apply grid grid-cols-3 gap-2 w-full;
+}
+
+.about__image-tile {
+    @apply h-16 rounded-lg bg-white/20 backdrop-blur-sm;
+}
+
+.about__content {
+    @apply flex-1 min-w-0 flex flex-col;
+}
+
+.about__body {
+    @apply text-[#64748B] text-sm leading-relaxed mb-6;
+}
+
+.about__list {
+    @apply flex flex-col gap-3 list-none p-0 m-0;
+}
+
+.about__list-item {
+    @apply flex items-center gap-3 text-sm text-[#334155];
+}
+
+.about__check {
+    @apply flex items-center justify-center w-5 h-5 rounded-full border-2 border-[#177DAD] shrink-0;
+}
+
+
+/* ─────────────────────────────────────────
+   CORE OFFERINGS
+───────────────────────────────────────── */
+
+.offerings {
+    @apply bg-[#F8FAFC] py-20;
+}
+
+.offerings__inner {
+    @apply max-w-[1280px] mx-auto px-6;
+}
+
+.offerings__grid {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6 mt-2;
+}
+
+.offering-card {
+    @apply bg-white rounded-xl border border-[#E2E8F0] p-8 flex flex-col;
+}
+
+.offering-card__icon {
+    @apply flex items-center justify-center w-12 h-12 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] mb-4 shrink-0;
+}
+
+.offering-card__title {
+    @apply text-[#0F172A] font-semibold text-base mb-2;
+}
+
+.offering-card__desc {
+    @apply text-[#64748B] text-sm leading-relaxed;
+}
+
+
+/* ─────────────────────────────────────────
+   INDUSTRIES
+───────────────────────────────────────── */
+
+.industries {
+    @apply bg-white py-20;
+}
+
+.industries__inner {
+    @apply max-w-[1280px] mx-auto px-6;
+}
+
+.industries__grid {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-5 mt-2;
+}
+
+.industry-card {
+    @apply bg-[#F8FAFC] rounded-xl p-6 flex flex-col;
+}
+
+.industry-card__icon {
+    @apply flex items-center justify-center w-10 h-10 rounded-lg bg-white border border-[#E2E8F0] mb-4 shrink-0;
+}
+
+.industry-card__title {
+    @apply text-[#0F172A] font-semibold text-base mb-1;
+}
+
+.industry-card__desc {
+    @apply text-[#64748B] text-sm leading-relaxed;
+}
+
+
+/* ─────────────────────────────────────────
+   PROFESSIONAL SERVICES
+───────────────────────────────────────── */
+
+.services {
+    @apply bg-[#F8FAFC] py-20;
+}
+
+.services__inner {
+    @apply max-w-[1280px] mx-auto px-6 flex items-start gap-16;
+}
+
+.services__content {
+    @apply flex-1 min-w-0 flex flex-col;
+}
+
+.services__list {
+    @apply flex flex-col gap-7 mt-10;
+}
+
+.service-item {
+    @apply flex items-start gap-4;
+}
+
+.service-item__icon {
+    @apply flex items-center justify-center w-11 h-11 rounded-xl border border-[#E2E8F0] bg-white shrink-0;
+}
+
+.service-item__body {
+    @apply flex flex-col;
+}
+
+.service-item__title {
+    @apply text-[#0F172A] font-semibold text-base mb-1;
+}
+
+.service-item__desc {
+    @apply text-[#64748B] text-sm leading-relaxed;
+}
+
+/* Services right-side visual */
+.services__visual {
+    @apply flex-1 min-w-0 hidden md:block rounded-2xl overflow-hidden h-[440px] bg-[#1E293B] relative;
+}
+
+.services__visual-tiles {
+    @apply absolute inset-0 grid grid-cols-2 gap-3 p-8 opacity-50;
+}
+
+.services__visual-tile {
+    @apply rounded-xl bg-[#177DAD]/20 border border-[#177DAD]/30;
+}
+
+.services__visual-center {
+    @apply absolute inset-0 flex flex-col items-center justify-center;
+}
+
+.services__visual-center svg {
+    @apply opacity-60 mb-4;
+}
+
+.services__visual-label {
+    @apply text-[#64748B] text-sm;
+}
+
+
+/* ─────────────────────────────────────────
+   ENGAGEMENT MODEL
+───────────────────────────────────────── */
+
+.engagement {
+    @apply bg-white py-20;
+}
+
+.engagement__inner {
+    @apply max-w-[1280px] mx-auto px-6;
+}
+
+.engagement__steps {
+    @apply flex flex-col md:flex-row items-start justify-between gap-6 relative mt-4;
+}
+
+.engagement__connector {
+    @apply hidden md:block absolute top-5 left-[8%] right-[8%] h-px bg-[#E2E8F0] z-0;
+}
+
+.step {
+    @apply flex flex-col items-center text-center gap-3 flex-1 relative z-10;
+}
+
+.step__circle {
+    @apply flex items-center justify-center w-10 h-10 rounded-full bg-[#177DAD] text-white font-bold text-sm border-4 border-white shadow-sm;
+}
+
+.step__label {
+    @apply text-[#334155] text-xs font-medium leading-snug max-w-[90px];
+}
+
+
+/* ─────────────────────────────────────────
+   CTA BANNER
+───────────────────────────────────────── */
+
+.cta {
+    @apply bg-[#0F172A] py-20;
+}
+
+.cta__inner {
+    @apply max-w-[800px] mx-auto px-6 text-center flex flex-col items-center;
+}
+
+.cta__heading {
+    @apply text-3xl font-bold text-white mb-4;
+}
+
+.cta__subtext {
+    @apply text-[#94A3B8] text-base leading-relaxed mb-8 max-w-xl;
+}
+
+
+/* ─────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────── */
+
+.footer {
+    @apply bg-[#0F172A] border-t border-white/10;
+}
+
+.footer__inner {
+    @apply max-w-[1280px] mx-auto px-6 pt-12 pb-8;
+}
+
+.footer__grid {
+    @apply grid grid-cols-1 md:grid-cols-4 gap-10 mb-10;
+}
+
+/* Brand column */
+.footer__brand {
+    @apply flex flex-col gap-4;
+}
+
+.footer__brand-logo {
+    @apply flex items-center gap-2;
+}
+
+.footer__brand-name {
+    @apply text-white font-bold text-sm tracking-wide;
+}
+
+.footer__brand-tagline {
+    @apply text-[#64748B] text-[9px] mt-0.5;
+}
+
+.footer__brand-desc {
+    @apply text-[#64748B] text-sm leading-relaxed;
+}
+
+/* Nav columns */
+.footer__col {
+    @apply flex flex-col gap-3;
+}
+
+.footer__col-heading {
+    @apply text-white text-sm font-semibold mb-1;
+}
+
+.footer__link {
+    @apply text-[#64748B] text-sm hover:text-white transition-colors;
+}
+
+.footer__contact-item {
+    @apply text-[#64748B] text-sm;
+}
+
+/* Bottom bar */
+.footer__bottom {
+    @apply flex items-center justify-between border-t border-white/10 pt-6 flex-wrap gap-4;
+}
+
+.footer__copyright {
+    @apply text-[#64748B] text-sm;
+}
+
+.footer__legal {
+    @apply flex items-center gap-6;
+}
