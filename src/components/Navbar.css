@@ -1,0 +1,44 @@
+/* ============================================================
+   Navbar.css — dark theme, @apply only
+   ============================================================ */
+
+@import "tailwindcss";
+
+.navbar {
+    @apply sticky top-0 z-50 border-b border-white/[0.07];
+    background: rgba(6, 11, 24, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.navbar__inner {
+    @apply flex items-center justify-between max-w-[1280px] mx-auto px-6 h-[60px];
+}
+
+.navbar__logo {
+    @apply flex items-center gap-2 shrink-0 no-underline;
+}
+
+.navbar__logo-text {
+    @apply flex flex-col;
+}
+
+.navbar__logo-name {
+    @apply text-sm font-bold text-[#F1F5F9] tracking-[0.06em] leading-none;
+}
+
+.navbar__logo-tagline {
+    @apply text-[9px] text-[#64748B] mt-0.5 leading-none;
+}
+
+.navbar__links {
+    @apply hidden md:flex items-center gap-7;
+}
+
+.navbar__link {
+    @apply text-[13px] font-medium text-[#94A3B8] no-underline whitespace-nowrap transition-colors duration-200 hover:text-[#F1F5F9];
+}
+
+.navbar__cta {
+    @apply inline-flex items-center bg-[#2563EB] text-white text-[13px] font-semibold px-4 py-2 rounded-md no-underline whitespace-nowrap transition-colors duration-200 hover:bg-[#3B82F6];
+}

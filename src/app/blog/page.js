@@ -42,36 +42,6 @@ const NAV_LINKS = [
   { label: "Blog", href: "/blog" },
 ];
 
-function Navbar() {
-  return (
-    <nav className="navbar">
-      <div className="navbar__inner">
-        <Link href="/" className="navbar__logo">
-          <LogoIcon size={32} />
-          <div className="navbar__logo-text">
-            <p className="navbar__logo-name">RAJGURU</p>
-            <p className="navbar__logo-tagline">
-              Ubiquiti Networking Solutions
-            </p>
-          </div>
-        </Link>
-
-        <div className="navbar__links">
-          {NAV_LINKS.map((item) => (
-            <Link key={item.label} href={item.href} className="navbar__link">
-              {item.label}
-            </Link>
-          ))}
-        </div>
-
-        <Link href="/#contact" className="btn btn--primary">
-          Contact Us
-        </Link>
-      </div>
-    </nav>
-  );
-}
-
 /* ─────────────────────────────────────────
    POST CARD
 ───────────────────────────────────────── */
@@ -104,8 +74,6 @@ export default function BlogListingPage() {
 
   return (
     <div className="page">
-      <Navbar />
-
       <main>
         {/* Header */}
         <div className="listing-header">
