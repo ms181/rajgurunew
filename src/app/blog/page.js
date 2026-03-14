@@ -7,19 +7,21 @@ import { getAllPosts } from "../../lib/blog";
 ───────────────────────────────────────── */
 
 function LogoIcon({ size = 40 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M20 2C10.06 2 2 10.06 2 20s8.06 18 18 18 18-8.06 18-18S29.94 2 20 2zm0 6a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 25.5c-4.5 0-8.49-2.1-11.07-5.37C9.43 25.87 14.5 24 20 24s10.57 1.87 11.07 4.13C28.49 31.4 24.5 33.5 20 33.5z"
-        fill="#177DAD"
-      />
-    </svg>
-  );
+  return <img src="/logo.png" alt="Logo" width={size} height={size} />;
 }
 
 function ArrowRightIcon() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <line x1="5" y1="12" x2="19" y2="12" />
       <polyline points="12 5 19 12 12 19" />
     </svg>
@@ -31,13 +33,13 @@ function ArrowRightIcon() {
 ───────────────────────────────────────── */
 
 const NAV_LINKS = [
-  { label: "Home",         href: "/" },
-  { label: "Solutions",    href: "/#solutions" },
-  { label: "Industries",   href: "/#industries" },
-  { label: "Services",     href: "/#services" },
-  { label: "Why Rajguru",  href: "/#why" },
+  { label: "Home", href: "/" },
+  { label: "Solutions", href: "/#solutions" },
+  { label: "Industries", href: "/#industries" },
+  { label: "Services", href: "/#services" },
+  { label: "Why Rajguru", href: "/#why" },
   { label: "Capabilities", href: "/#capabilities" },
-  { label: "Blog",         href: "/blog" },
+  { label: "Blog", href: "/blog" },
 ];
 
 function Navbar() {
@@ -45,10 +47,12 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar__inner">
         <Link href="/" className="navbar__logo">
-          <LogoIcon size={40} />
+          <LogoIcon size={32} />
           <div className="navbar__logo-text">
             <p className="navbar__logo-name">RAJGURU</p>
-            <p className="navbar__logo-tagline">Ubiquiti Networking Solutions</p>
+            <p className="navbar__logo-tagline">
+              Ubiquiti Networking Solutions
+            </p>
           </div>
         </Link>
 
@@ -109,8 +113,8 @@ export default function BlogListingPage() {
             <p className="section-eyebrow">Our Blog</p>
             <h1 className="listing-header__title">Insights & Guides</h1>
             <p className="listing-header__subtitle">
-              Technical deep-dives, deployment walkthroughs, and networking best practices
-              from the Rajguru team.
+              Technical deep-dives, deployment walkthroughs, and networking best
+              practices from the Rajguru team.
             </p>
           </div>
         </div>

@@ -6,20 +6,7 @@ import Image from "next/image";
 ───────────────────────────────────────── */
 
 function LogoIcon({ size = 40 }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 40 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M20 2C10.06 2 2 10.06 2 20s8.06 18 18 18 18-8.06 18-18S29.94 2 20 2zm0 6a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 25.5c-4.5 0-8.49-2.1-11.07-5.37C9.43 25.87 14.5 24 20 24s10.57 1.87 11.07 4.13C28.49 31.4 24.5 33.5 20 33.5z"
-        fill="#177DAD"
-      />
-    </svg>
-  );
+  return <img src="/logo.png" alt="Logo" width={size} height={size} />;
 }
 
 function CheckIcon() {
@@ -344,7 +331,7 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar__inner">
         <div className="navbar__logo">
-          <LogoIcon size={40} />
+          <LogoIcon size={32} />
           <div className="navbar__logo-text">
             <p className="navbar__logo-name">RAJGURU</p>
             <p className="navbar__logo-tagline">
@@ -752,7 +739,7 @@ function Footer() {
           {/* Brand */}
           <div className="footer__brand">
             <div className="footer__brand-logo">
-              <LogoIcon size={36} />
+              <LogoIcon size={32} />
               <div>
                 <p className="footer__brand-name">RAJGURU</p>
                 <p className="footer__brand-tagline">
