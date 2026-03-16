@@ -1,42 +1,12 @@
+"use client";
+import { useEffect } from "react";
 import "./page.css";
+import HeroCanvas from "../components/Herocanvas";
+import useReveal from "../hooks/useReveal";
 
 /* ─────────────────────────────────────────
    ICONS
 ───────────────────────────────────────── */
-
-function CheckIcon() {
-  return (
-    <svg width="9" height="7" viewBox="0 0 9 7" fill="none">
-      <path
-        d="M1 3.5L3.5 6L8 1"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function DownloadIcon() {
-  return (
-    <svg
-      width="14"
-      height="14"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-      <polyline points="7 10 12 15 17 10" />
-      <line x1="12" y1="15" x2="12" y2="3" />
-    </svg>
-  );
-}
-
 function ArrowRightIcon() {
   return (
     <svg
@@ -45,7 +15,7 @@ function ArrowRightIcon() {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="2.5"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
@@ -54,12 +24,11 @@ function ArrowRightIcon() {
     </svg>
   );
 }
-
 function WifiIcon() {
   return (
     <svg
-      width="20"
-      height="20"
+      width="22"
+      height="22"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -71,12 +40,11 @@ function WifiIcon() {
     </svg>
   );
 }
-
 function ServerIcon() {
   return (
     <svg
-      width="20"
-      height="20"
+      width="22"
+      height="22"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -91,12 +59,11 @@ function ServerIcon() {
     </svg>
   );
 }
-
 function ShieldIcon() {
   return (
     <svg
-      width="20"
-      height="20"
+      width="22"
+      height="22"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -108,12 +75,11 @@ function ShieldIcon() {
     </svg>
   );
 }
-
 function PhoneIcon() {
   return (
     <svg
-      width="20"
-      height="20"
+      width="22"
+      height="22"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -121,16 +87,15 @@ function PhoneIcon() {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
     </svg>
   );
 }
-
 function CloudIcon() {
   return (
     <svg
-      width="20"
-      height="20"
+      width="22"
+      height="22"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -142,12 +107,11 @@ function CloudIcon() {
     </svg>
   );
 }
-
 function CpuIcon() {
   return (
     <svg
-      width="20"
-      height="20"
+      width="22"
+      height="22"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -168,12 +132,11 @@ function CpuIcon() {
     </svg>
   );
 }
-
 function GlobeIcon() {
   return (
     <svg
-      width="20"
-      height="20"
+      width="22"
+      height="22"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -187,12 +150,11 @@ function GlobeIcon() {
     </svg>
   );
 }
-
 function SupportIcon() {
   return (
     <svg
-      width="20"
-      height="20"
+      width="22"
+      height="22"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -204,12 +166,11 @@ function SupportIcon() {
     </svg>
   );
 }
-
 function HomeIcon() {
   return (
     <svg
-      width="20"
-      height="20"
+      width="22"
+      height="22"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -222,12 +183,11 @@ function HomeIcon() {
     </svg>
   );
 }
-
 function BookIcon() {
   return (
     <svg
-      width="20"
-      height="20"
+      width="22"
+      height="22"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -240,12 +200,11 @@ function BookIcon() {
     </svg>
   );
 }
-
 function HeartbeatIcon() {
   return (
     <svg
-      width="20"
-      height="20"
+      width="22"
+      height="22"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -257,12 +216,11 @@ function HeartbeatIcon() {
     </svg>
   );
 }
-
 function BriefcaseIcon() {
   return (
     <svg
-      width="20"
-      height="20"
+      width="22"
+      height="22"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -275,12 +233,11 @@ function BriefcaseIcon() {
     </svg>
   );
 }
-
 function BuildingIcon() {
   return (
     <svg
-      width="20"
-      height="20"
+      width="22"
+      height="22"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -295,12 +252,11 @@ function BuildingIcon() {
     </svg>
   );
 }
-
 function ZeroIcon() {
   return (
     <svg
-      width="28"
-      height="28"
+      width="32"
+      height="32"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -313,12 +269,11 @@ function ZeroIcon() {
     </svg>
   );
 }
-
 function ScaleIcon() {
   return (
     <svg
-      width="28"
-      height="28"
+      width="32"
+      height="32"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -330,12 +285,11 @@ function ScaleIcon() {
     </svg>
   );
 }
-
 function ManageIcon() {
   return (
     <svg
-      width="28"
-      height="28"
+      width="32"
+      height="32"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -347,12 +301,11 @@ function ManageIcon() {
     </svg>
   );
 }
-
 function MapPinIcon() {
   return (
     <svg
-      width="16"
-      height="16"
+      width="18"
+      height="18"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -365,12 +318,11 @@ function MapPinIcon() {
     </svg>
   );
 }
-
 function MailIcon() {
   return (
     <svg
-      width="16"
-      height="16"
+      width="18"
+      height="18"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -383,7 +335,6 @@ function MailIcon() {
     </svg>
   );
 }
-
 function TwitterIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -391,7 +342,6 @@ function TwitterIcon() {
     </svg>
   );
 }
-
 function LinkedInIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -401,7 +351,6 @@ function LinkedInIcon() {
     </svg>
   );
 }
-
 function InstagramIcon() {
   return (
     <svg
@@ -420,7 +369,6 @@ function InstagramIcon() {
     </svg>
   );
 }
-
 function YoutubeIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -429,16 +377,9 @@ function YoutubeIcon() {
     </svg>
   );
 }
-
 function LogoIconSmall() {
   return (
-    <svg
-      width="32"
-      height="32"
-      viewBox="0 0 40 40"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
       <path
         d="M20 2C10.06 2 2 10.06 2 20s8.06 18 18 18 18-8.06 18-18S29.94 2 20 2zm0 6a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 25.5c-4.5 0-8.49-2.1-11.07-5.37C9.43 25.87 14.5 24 20 24s10.57 1.87 11.07 4.13C28.49 31.4 24.5 33.5 20 33.5z"
         fill="#2563EB"
@@ -452,16 +393,69 @@ function LogoIconSmall() {
 ───────────────────────────────────────── */
 
 const HERO_PARTNERS = [
-  { name: "Ubiquiti", sub: "Network Infrastructure & Security Solutions" },
-  { name: "Vuln.uk", sub: "Vulnerability Assessment & Pen Test Services" },
+  {
+    logo: (
+      <img
+        src="https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/ubiquiti.svg"
+        width="28"
+        height="28"
+        alt="Ubiquiti"
+        style={{
+          filter: "invert(1) sepia(1) saturate(2) hue-rotate(190deg)",
+          opacity: 0.9,
+        }}
+      />
+    ),
+    name: "Ubiquiti",
+    sub: "Network Infrastructure & Security Solutions",
+  },
+  {
+    logo: (
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 32 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect width="32" height="32" rx="6" fill="#1E3A8A" fillOpacity="0.6" />
+        <text
+          x="5"
+          y="22"
+          fontFamily="monospace"
+          fontSize="13"
+          fontWeight="800"
+          fill="#60A5FA"
+        >
+          V
+        </text>
+        <text
+          x="13"
+          y="22"
+          fontFamily="monospace"
+          fontSize="11"
+          fontWeight="600"
+          fill="#93C5FD"
+        >
+          .uk
+        </text>
+      </svg>
+    ),
+    name: "Vuln.uk",
+    sub: "Vulnerability Assessment & Pen Test Services",
+  },
 ];
 
 function Hero() {
   return (
     <section className="hero">
-      <div className="hero__bg-grid" />
+      <HeroCanvas />
+      <div className="hero__glow" />
+
       <div className="hero__inner">
-        <p className="section-eyebrow">Enterprise IT Solutions Provider</p>
+        <p className="section-eyebrow hero-eyebrow">
+          Enterprise IT Solutions Provider
+        </p>
         <h1 className="hero__heading">
           Building Future-Ready
           <br />
@@ -472,7 +466,7 @@ function Hero() {
           solutions — trusted by 1,000+ businesses across India.
         </p>
         <div className="hero__actions">
-          <a href="#contact" className="btn btn--primary">
+          <a href="#contact" className="btn btn--primary btn--glow">
             Explore Solutions
           </a>
           <a href="#projects" className="btn btn--ghost">
@@ -482,7 +476,7 @@ function Hero() {
         <div className="hero__partners">
           {HERO_PARTNERS.map((p) => (
             <div key={p.name} className="hero__partner-pill">
-              <span className="hero__partner-dot" />
+              <span className="hero__partner-logo">{p.logo}</span>
               <div>
                 <p className="hero__partner-name">{p.name}</p>
                 <p className="hero__partner-sub">{p.sub}</p>
@@ -496,22 +490,24 @@ function Hero() {
 }
 
 /* ─────────────────────────────────────────
-   ABOUT  (End-to-End IT)
+   ABOUT
 ───────────────────────────────────────── */
 
 function About() {
   return (
     <section className="about">
-      <div className="about__inner">
-        <p className="section-eyebrow">What We Do</p>
-        <h2 className="section-heading">
-          End-to-End IT Infrastructure Solutions
-        </h2>
-        <p className="about__body">
-          From network design to cloud security — we architect, deploy, and
-          manage complete technology ecosystems.
-        </p>
-        <a href="#services" className="btn btn--outline-blue">
+      <div className="about__inner reveal">
+        <div className="about__text">
+          <p className="section-eyebrow">What We Do</p>
+          <h2 className="section-heading">
+            End-to-End IT Infrastructure Solutions
+          </h2>
+          <p className="about__body">
+            From network design to cloud security — we architect, deploy, and
+            manage complete technology ecosystems.
+          </p>
+        </div>
+        <a href="#services" className="btn btn--outline-blue about__cta">
           Learn More <ArrowRightIcon />
         </a>
       </div>
@@ -566,23 +562,27 @@ const OFFERINGS = [
   },
 ];
 
-function OfferingCard({ icon, title, desc }) {
+function OfferingCard({ icon, title, desc, delay }) {
   return (
-    <div className="offering-card">
+    <div
+      className="offering-card reveal"
+      style={{ transitionDelay: `${delay}ms` }}
+    >
       <div className="offering-card__icon">{icon}</div>
       <h3 className="offering-card__title">{title}</h3>
       <p className="offering-card__desc">{desc}</p>
+      <div className="offering-card__shine" />
     </div>
   );
 }
 
 function CoreOfferings() {
   return (
-    <section className="offerings">
+    <section className="offerings" id="services">
       <div className="offerings__inner">
         <div className="offerings__grid">
-          {OFFERINGS.map((c) => (
-            <OfferingCard key={c.title} {...c} />
+          {OFFERINGS.map((c, i) => (
+            <OfferingCard key={c.title} {...c} delay={i * 60} />
           ))}
         </div>
       </div>
@@ -591,7 +591,7 @@ function CoreOfferings() {
 }
 
 /* ─────────────────────────────────────────
-   UNIFYING  (3-col feature strip)
+   UNIFYING
 ───────────────────────────────────────── */
 
 const UNIFYING_FEATURES = [
@@ -613,7 +613,7 @@ function Unifying() {
   return (
     <section className="unifying">
       <div className="unifying__inner">
-        <div className="section-header">
+        <div className="section-header reveal">
           <p className="section-eyebrow">Integration</p>
           <h2 className="section-heading">Unifying Your Digital Ecosystem</h2>
           <p className="section-subtext">
@@ -622,8 +622,13 @@ function Unifying() {
           </p>
         </div>
         <div className="unifying__grid">
-          {UNIFYING_FEATURES.map((f) => (
-            <div key={f.title} className="unifying-card">
+          {UNIFYING_FEATURES.map((f, i) => (
+            <div
+              key={f.title}
+              className="unifying-card reveal"
+              style={{ transitionDelay: `${i * 100}ms` }}
+            >
+              <div className="unifying-card__num">0{i + 1}</div>
               <h3 className="unifying-card__title">{f.title}</h3>
               <p className="unifying-card__desc">{f.desc}</p>
             </div>
@@ -666,27 +671,27 @@ const INDUSTRIES = [
   },
 ];
 
-function IndustryCard({ icon, title, desc }) {
-  return (
-    <div className="industry-card">
-      <div className="industry-card__icon">{icon}</div>
-      <h3 className="industry-card__title">{title}</h3>
-      <p className="industry-card__desc">{desc}</p>
-    </div>
-  );
-}
-
 function Industries() {
   return (
-    <section className="industries">
+    <section className="industries" id="industries">
       <div className="industries__inner">
-        <p className="section-eyebrow">Industries We Serve</p>
-        <h2 className="section-heading industries__heading">
-          Tailored infrastructure solutions for every sector
-        </h2>
+        <div className="reveal">
+          <p className="section-eyebrow">Industries We Serve</p>
+          <h2 className="industries__heading">
+            Tailored infrastructure solutions for every sector
+          </h2>
+        </div>
         <div className="industries__grid">
-          {INDUSTRIES.map((c) => (
-            <IndustryCard key={c.title} {...c} />
+          {INDUSTRIES.map((c, i) => (
+            <div
+              key={c.title}
+              className="industry-card reveal"
+              style={{ transitionDelay: `${i * 80}ms` }}
+            >
+              <div className="industry-card__icon">{c.icon}</div>
+              <h3 className="industry-card__title">{c.title}</h3>
+              <p className="industry-card__desc">{c.desc}</p>
+            </div>
           ))}
         </div>
       </div>
@@ -703,13 +708,11 @@ const PROJECTS = [
     label: "Enterprise",
     title:
       "Integrated infrastructure & security surveillance for a Precious Coffee Chain",
-    img: null,
   },
   {
     label: "Commercial",
     title:
       "End-to-end network infrastructure & surveillance for Solar-Plex Commercial Facility",
-    img: null,
   },
 ];
 
@@ -717,7 +720,7 @@ function Projects() {
   return (
     <section className="projects" id="projects">
       <div className="projects__inner">
-        <div className="section-header">
+        <div className="section-header reveal">
           <p className="section-eyebrow">Our Work</p>
           <h2 className="section-heading">
             1,300+ Projects. Zero Compromises.
@@ -727,13 +730,18 @@ function Projects() {
           </p>
         </div>
         <div className="projects__grid">
-          {PROJECTS.map((p) => (
-            <div key={p.title} className="project-card">
+          {PROJECTS.map((p, i) => (
+            <div
+              key={i}
+              className="project-card reveal"
+              style={{ transitionDelay: `${i * 120}ms` }}
+            >
               <div className="project-card__image" />
               <div className="project-card__overlay">
                 <span className="project-card__label">{p.label}</span>
                 <p className="project-card__title">{p.title}</p>
               </div>
+              <div className="project-card__hover-border" />
             </div>
           ))}
         </div>
@@ -743,7 +751,7 @@ function Projects() {
 }
 
 /* ─────────────────────────────────────────
-   HaaS  (Hardware as a Service)
+   HaaS
 ───────────────────────────────────────── */
 
 const HAAS_FEATURES = [
@@ -760,7 +768,7 @@ const HAAS_FEATURES = [
   {
     icon: <ManageIcon />,
     title: "Managed & Maintained",
-    desc: "All hardware is monitored, maintained, and upgraded by our team of specialists on your behalf.",
+    desc: "All hardware is monitored, maintained, and upgraded by our team on your behalf.",
   },
 ];
 
@@ -768,7 +776,7 @@ function Haas() {
   return (
     <section className="haas">
       <div className="haas__inner">
-        <div className="section-header">
+        <div className="section-header reveal">
           <p className="section-eyebrow">Flexible Plans</p>
           <h2 className="section-heading">Hardware as a Service</h2>
           <p className="section-subtext">
@@ -777,15 +785,19 @@ function Haas() {
           </p>
         </div>
         <div className="haas__grid">
-          {HAAS_FEATURES.map((f) => (
-            <div key={f.title} className="haas-card">
+          {HAAS_FEATURES.map((f, i) => (
+            <div
+              key={f.title}
+              className="haas-card reveal"
+              style={{ transitionDelay: `${i * 100}ms` }}
+            >
               <div className="haas-card__icon">{f.icon}</div>
               <h3 className="haas-card__title">{f.title}</h3>
               <p className="haas-card__desc">{f.desc}</p>
             </div>
           ))}
         </div>
-        <a href="#contact" className="btn btn--outline-blue">
+        <a href="#contact" className="btn btn--outline-blue reveal">
           Learn More About HaaS <ArrowRightIcon />
         </a>
       </div>
@@ -797,14 +809,17 @@ function Haas() {
    PARTNERS TICKER
 ───────────────────────────────────────── */
 
-const PARTNERS = [
-  "TP-Link",
-  "Cisco",
-  "Dell",
-  "HP Enterprise",
-  "Fortinet",
-  "VMware",
-  "Microsoft Azure",
+const CDN = "https://cdn.jsdelivr.net/npm/simple-icons@v16/icons";
+const LOGO_FILTER = { filter: "brightness(0) invert(1)", opacity: 0.45 };
+
+const PARTNER_LOGOS = [
+  { name: "TP-Link", src: `${CDN}/tp-link.svg` },
+  { name: "Cisco", src: `${CDN}/cisco.svg` },
+  { name: "Dell", src: `${CDN}/dell.svg` },
+  { name: "HP Enterprise", src: `${CDN}/hp.svg` },
+  { name: "Fortinet", src: `${CDN}/fortinet.svg` },
+  { name: "VMware", src: `${CDN}/vmware.svg` },
+  { name: "Microsoft Azure", src: `${CDN}/microsoftazure.svg` },
 ];
 
 function Partners() {
@@ -813,11 +828,22 @@ function Partners() {
       <div className="partners__label">Technology Partners We Work With</div>
       <div className="partners__track-wrap">
         <div className="partners__track">
-          {[...PARTNERS, ...PARTNERS].map((p, i) => (
-            <span key={i} className="partners__item">
-              {p}
-            </span>
-          ))}
+          {[...PARTNER_LOGOS, ...PARTNER_LOGOS, ...PARTNER_LOGOS].map(
+            (p, i) => (
+              <span key={i} className="partners__item">
+                <span className="partners__item-dot" />
+                <img
+                  src={p.src}
+                  alt={p.name}
+                  width="18"
+                  height="18"
+                  className="partners__item-logo"
+                  style={LOGO_FILTER}
+                />
+                <span className="partners__item-name">{p.name}</span>
+              </span>
+            ),
+          )}
         </div>
       </div>
     </section>
@@ -825,15 +851,14 @@ function Partners() {
 }
 
 /* ─────────────────────────────────────────
-   CONTACT FORM
+   CONTACT
 ───────────────────────────────────────── */
 
 function ContactForm() {
   return (
     <section className="contact" id="contact">
       <div className="contact__inner">
-        {/* Left */}
-        <div className="contact__left">
+        <div className="contact__left reveal">
           <p className="section-eyebrow">Get In Touch</p>
           <h2 className="contact__heading">Let's Build Your Infrastructure</h2>
           <p className="contact__body">
@@ -842,14 +867,18 @@ function ContactForm() {
           </p>
           <div className="contact__info">
             <div className="contact__info-item">
-              <MapPinIcon />
+              <span className="contact__info-icon">
+                <MapPinIcon />
+              </span>
               <div>
                 <p className="contact__info-label">Headquarters</p>
                 <p className="contact__info-value">Ahmedabad, Gujarat, India</p>
               </div>
             </div>
             <div className="contact__info-item">
-              <MailIcon />
+              <span className="contact__info-icon">
+                <MailIcon />
+              </span>
               <div>
                 <p className="contact__info-label">Email Us</p>
                 <p className="contact__info-value">contact@rajguru.com</p>
@@ -858,8 +887,10 @@ function ContactForm() {
           </div>
         </div>
 
-        {/* Right — form */}
-        <div className="contact__form">
+        <div
+          className="contact__form reveal"
+          style={{ transitionDelay: "150ms" }}
+        >
           <div className="contact__row">
             <div className="contact__field">
               <label className="contact__label">Name</label>
@@ -904,7 +935,7 @@ function ContactForm() {
               placeholder="Tell us about your infrastructure requirements..."
             />
           </div>
-          <button className="btn btn--primary contact__submit">
+          <button className="btn btn--primary contact__submit btn--glow">
             Submit Inquiry
           </button>
         </div>
@@ -926,27 +957,25 @@ const STEPS = [
   { num: 6, label: "Ongoing Support" },
 ];
 
-function EngagementStep({ num, label }) {
-  return (
-    <div className="step">
-      <div className="step__circle">{num}</div>
-      <p className="step__label">{label}</p>
-    </div>
-  );
-}
-
 function EngagementModel() {
   return (
     <section className="engagement">
       <div className="engagement__inner">
-        <div className="section-header">
+        <div className="section-header reveal">
           <p className="section-eyebrow">Our Process</p>
           <h2 className="section-heading">Our Engagement Model</h2>
         </div>
         <div className="engagement__steps">
           <div className="engagement__connector" />
-          {STEPS.map((step) => (
-            <EngagementStep key={step.num} {...step} />
+          {STEPS.map((step, i) => (
+            <div
+              key={step.num}
+              className="step reveal"
+              style={{ transitionDelay: `${i * 80}ms` }}
+            >
+              <div className="step__circle">{step.num}</div>
+              <p className="step__label">{step.label}</p>
+            </div>
           ))}
         </div>
       </div>
@@ -960,14 +989,14 @@ function EngagementModel() {
 
 const BLOG_POSTS = [
   {
-    slug: "why-structured-cabling",
+    slug: "structured-cabling-1",
     category: "Infrastructure",
     title: "Why Structured Cabling is the Backbone of Modern Business",
     excerpt:
       "Discover how proper structured cabling infrastructure forms the foundation of every reliable IT system.",
   },
   {
-    slug: "why-structured-cabling-2",
+    slug: "structured-cabling-2",
     category: "Infrastructure",
     title: "Why Structured Cabling is the Backbone of Modern Business",
     excerpt:
@@ -979,7 +1008,7 @@ function BlogPreview() {
   return (
     <section className="blog-preview">
       <div className="blog-preview__inner">
-        <div className="section-header">
+        <div className="section-header reveal">
           <p className="section-eyebrow">From the Team</p>
           <h2 className="section-heading">Insights & Resources</h2>
           <p className="section-subtext">
@@ -994,11 +1023,12 @@ function BlogPreview() {
           <button className="blog-preview__tab">Network Infrastructure</button>
         </div>
         <div className="blog-preview__grid">
-          {BLOG_POSTS.map((post) => (
+          {BLOG_POSTS.map((post, i) => (
             <a
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="blog-card"
+              className="blog-card reveal"
+              style={{ transitionDelay: `${i * 120}ms` }}
             >
               <div className="blog-card__image" />
               <div className="blog-card__body">
@@ -1059,7 +1089,6 @@ function Footer() {
               </a>
             </div>
           </div>
-
           <div className="footer__col">
             <p className="footer__col-heading">Quick Links</p>
             {FOOTER_LINKS.map((item) => (
@@ -1068,7 +1097,6 @@ function Footer() {
               </a>
             ))}
           </div>
-
           <div className="footer__col">
             <p className="footer__col-heading">Connect</p>
             <a href="#" className="footer__social footer__social--labeled">
@@ -1085,7 +1113,6 @@ function Footer() {
             </a>
           </div>
         </div>
-
         <div className="footer__bottom">
           <p className="footer__copyright">
             © 2024 Rajguru Distributors. All rights reserved.
@@ -1109,6 +1136,8 @@ function Footer() {
 ───────────────────────────────────────── */
 
 export default function Home() {
+  useReveal();
+
   return (
     <div className="page">
       <Hero />

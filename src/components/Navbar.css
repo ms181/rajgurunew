@@ -1,22 +1,38 @@
 /* ============================================================
-   Navbar.css — dark theme, @apply only
+   Navbar.css — scroll-aware dark theme
+   At top: fully opaque, no border (blends with hero)
+   On scroll: glassmorphism + border fade in
    ============================================================ */
 
 @import "tailwindcss";
 
 .navbar {
-    @apply sticky top-0 z-50 border-b border-white/[0.07];
-    background: rgba(6, 11, 24, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    @apply sticky top-0 z-50;
+    background: #060B18;
+    border-bottom: 1px solid transparent;
+    transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+/* Scrolled state — glass effect */
+.navbar--scrolled {
+    background: rgba(6, 11, 24, 0.82);
+    border-bottom-color: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
 .navbar__inner {
-    @apply flex items-center justify-between max-w-[1280px] mx-auto px-6 h-[60px];
+    @apply flex items-center justify-between max-w-[1280px] mx-auto px-6;
+    height: 64px;
 }
 
 .navbar__logo {
-    @apply flex items-center gap-2 shrink-0 no-underline;
+    @apply flex items-center gap-2.5 no-underline shrink-0;
+    transition: opacity 0.2s;
+}
+
+.navbar__logo:hover {
+    opacity: 0.8;
 }
 
 .navbar__logo-text {
@@ -24,11 +40,11 @@
 }
 
 .navbar__logo-name {
-    @apply text-sm font-bold text-[#F1F5F9] tracking-[0.06em] leading-none;
+    @apply text-[14px] font-bold text-[#F1F5F9] tracking-[0.06em] leading-none;
 }
 
 .navbar__logo-tagline {
-    @apply text-[9px] text-[#64748B] mt-0.5 leading-none;
+    @apply text-[9px] text-[#334155] leading-none mt-0.5;
 }
 
 .navbar__links {
@@ -36,9 +52,41 @@
 }
 
 .navbar__link {
-    @apply text-[13px] font-medium text-[#94A3B8] no-underline whitespace-nowrap transition-colors duration-200 hover:text-[#F1F5F9];
+    @apply text-[13px] font-medium text-[#64748B] no-underline whitespace-nowrap relative;
+    transition: color 0.2s;
+}
+
+.navbar__link:hover {
+    @apply text-[#F1F5F9];
+}
+
+/* Underline slide-in on hover */
+.navbar__link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #3B82F6;
+    transition: width 0.25s ease;
+}
+
+.navbar__link:hover::after {
+    width: 100%;
 }
 
 .navbar__cta {
-    @apply inline-flex items-center bg-[#2563EB] text-white text-[13px] font-semibold px-4 py-2 rounded-md no-underline whitespace-nowrap transition-colors duration-200 hover:bg-[#3B82F6];
+    @apply inline-flex items-center bg-[#2563EB] text-white text-[13px] font-semibold px-4 py-2 rounded-lg no-underline whitespace-nowrap;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.3s;
+}
+
+.navbar__cta:hover {
+    @apply bg-[#3B82F6];
+    transform: translateY(-1px);
+    box-shadow: 0 0 18px 4px rgba(37, 99, 235, 0.35);
+}
+
+.navbar__cta:active {
+    transform: scale(0.96);
 }

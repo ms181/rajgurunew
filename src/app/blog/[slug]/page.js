@@ -5,13 +5,6 @@ import { getAllSlugs, getPostBySlug } from "../../../lib/blog";
 
 /* ─────────────────────────────────────────
    STATIC GENERATION
-   Tells Next.js which slugs exist at build
-   time so it can pre-render each post page.
-   ─────────────────────────────────────────
-   When you move to Sanity, replace with:
-     export async function generateStaticParams() {
-       return client.fetch(`*[_type == "post"]{ "slug": slug.current }`)
-     }
 ───────────────────────────────────────── */
 
 export async function generateStaticParams() {
@@ -21,10 +14,6 @@ export async function generateStaticParams() {
 /* ─────────────────────────────────────────
    ICONS
 ───────────────────────────────────────── */
-
-function LogoIcon({ size = 40 }) {
-  return <img src="/logo.png" alt="Logo" width={size} height={size} />;
-}
 
 function ArrowLeftIcon() {
   return (
@@ -101,31 +90,16 @@ function UserIcon() {
 }
 
 /* ─────────────────────────────────────────
-   NAVBAR
-───────────────────────────────────────── */
-
-const NAV_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "Solutions", href: "/#solutions" },
-  { label: "Industries", href: "/#industries" },
-  { label: "Services", href: "/#services" },
-  { label: "Why Rajguru", href: "/#why" },
-  { label: "Capabilities", href: "/#capabilities" },
-  { label: "Blog", href: "/blog" },
-];
-
-/* ─────────────────────────────────────────
    COVER HERO
 ───────────────────────────────────────── */
 
 function CoverHero({ title, author, date, readTime, category }) {
   return (
     <div className="cover-hero">
-      {/* Image layer */}
       <div className="cover-hero__image" />
       <div className="cover-hero__overlay" />
+      <div className="cover-hero__glow" />
 
-      {/* Content */}
       <div className="cover-hero__content">
         <Link href="/blog" className="cover-hero__back">
           <ArrowLeftIcon />
@@ -133,7 +107,6 @@ function CoverHero({ title, author, date, readTime, category }) {
         </Link>
 
         <span className="cover-hero__category">{category}</span>
-
         <h1 className="cover-hero__title">{title}</h1>
 
         <div className="cover-hero__meta">
@@ -236,10 +209,7 @@ function ContentRenderer({ content }) {
     <div className="content-body">
       {content.map((block, idx) => {
         const Component = RENDERERS[block.type];
-        if (!Component) {
-          console.warn(`Unknown block type: "${block.type}" at index ${idx}`);
-          return null;
-        }
+        if (!Component) return null;
         return <Component key={idx} data={block.data} />;
       })}
     </div>
@@ -254,28 +224,24 @@ export default async function BlogPostPage({ params }) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
 
-  // If slug doesn't exist, render Next.js 404 page
   if (!post) notFound();
 
   const { title, author, date, readTime, category, content } = post;
 
   return (
-    <div className="page">
-      <main>
-        <CoverHero
-          title={title}
-          author={author}
-          date={date}
-          readTime={readTime}
-          category={category}
-        />
-
-        <div className="post-body">
-          <article className="post-article">
-            <ContentRenderer content={content} />
-          </article>
-        </div>
-      </main>
-    </div>
+    <main className="page">
+      <CoverHero
+        title={title}
+        author={author}
+        date={date}
+        readTime={readTime}
+        category={category}
+      />
+      <div className="post-body">
+        <article className="post-article">
+          <ContentRenderer content={content} />
+        </article>
+      </div>
+    </main>
   );
 }

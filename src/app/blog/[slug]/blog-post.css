@@ -1,123 +1,106 @@
 /* ============================================================
-   RAJGURU — blog-post.css
-   Styles for the /blog/[slug] individual post page.
+   RAJGURU — blog-post.css (dark theme)
+   @apply for utilities, plain CSS for pseudo/shadows/gradients
    ============================================================ */
 
 @import "tailwindcss";
 
-
 /* ─────────────────────────────────────────
-   TOKENS
+   BASE
 ───────────────────────────────────────── */
 
-:root {
-  --color-brand:       #177DAD;
-  --color-brand-dark:  #1369A0;
-  --color-navy:        #0F172A;
-  --color-slate-dark:  #334155;
-  --color-slate:       #64748B;
-  --color-slate-light: #94A3B8;
-  --color-border:      #E2E8F0;
-  --color-surface:     #F8FAFC;
+.page {
+  @apply min-h-screen bg-[#060B18] text-[#F1F5F9] overflow-x-hidden;
+  font-family: 'Inter', sans-serif;
 }
-
 
 /* ─────────────────────────────────────────
    SHARED
 ───────────────────────────────────────── */
 
-.page {
-  @apply bg-white min-h-screen;
-  font-family: 'Inter', sans-serif;
-}
-
 .btn {
-  @apply inline-flex items-center gap-2 text-sm font-semibold rounded-md transition-colors whitespace-nowrap cursor-pointer;
+  @apply inline-flex items-center gap-2 text-sm font-semibold rounded-lg px-5 py-2.5 cursor-pointer no-underline whitespace-nowrap;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.3s;
 }
 
-.btn--primary {
-  @apply bg-[#177DAD] text-white px-5 py-2.5 hover:bg-[#1369A0];
+.btn:active {
+  transform: scale(0.96);
 }
 
-
-/* ─────────────────────────────────────────
-   NAVBAR
-───────────────────────────────────────── */
-
-.navbar {
-  @apply flex justify-center border-b border-[#E2E8F0] bg-white sticky top-0 z-50;
+.btn--ghost {
+  @apply bg-transparent text-[#94A3B8] border border-white/10;
 }
 
-.navbar__inner {
-  @apply flex items-center justify-between w-full max-w-[1280px] px-6 py-3;
+.btn--ghost:hover {
+  @apply border-white/20 text-[#F1F5F9];
+  transform: translateY(-1px);
 }
-
-.navbar__logo {
-  @apply flex items-center gap-2 shrink-0 no-underline;
-}
-
-.navbar__logo-text {
-  @apply flex flex-col;
-}
-
-.navbar__logo-name {
-  @apply text-[#177DAD] font-bold text-sm leading-none tracking-wide;
-}
-
-.navbar__logo-tagline {
-  @apply text-[#64748B] text-[9px] leading-tight mt-0.5;
-}
-
-.navbar__links {
-  @apply hidden md:flex items-center gap-7;
-}
-
-.navbar__link {
-  @apply text-[#334155] text-sm font-medium hover:text-[#177DAD] transition-colors whitespace-nowrap no-underline;
-}
-
 
 /* ─────────────────────────────────────────
    COVER HERO
 ───────────────────────────────────────── */
 
 .cover-hero {
-  @apply relative w-full h-[420px] flex items-end overflow-hidden;
+  @apply relative w-full flex items-end overflow-hidden bg-[#060B18];
+  min-height: 420px;
 }
 
 .cover-hero__image {
-  @apply absolute inset-0;
-  background: linear-gradient(135deg, #1E3A5F 0%, #0F172A 100%);
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0f1f3d 0%, #060B18 100%);
+}
+
+/* dot grid on hero */
+.cover-hero__image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(37, 99, 235, 0.10) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
 }
 
 .cover-hero__overlay {
-  @apply absolute inset-0;
-  background: linear-gradient(to top, rgba(15,23,42,0.95) 0%, rgba(15,23,42,0.4) 60%, transparent 100%);
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(6, 11, 24, 0.97) 0%, rgba(6, 11, 24, 0.5) 55%, transparent 100%);
+}
+
+/* blue glow */
+.cover-hero__glow {
+  @apply absolute pointer-events-none rounded-full;
+  top: -80px;
+  right: 10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.14) 0%, transparent 70%);
 }
 
 .cover-hero__content {
-  @apply relative z-10 w-full max-w-[1280px] mx-auto px-6 pb-12 flex flex-col gap-4;
+  @apply relative z-10 w-full max-w-[1280px] mx-auto px-6 pb-14 flex flex-col gap-4;
 }
 
 .cover-hero__back {
-  @apply inline-flex items-center gap-2
-         text-[#94A3B8] text-sm font-medium
-         hover:text-white transition-colors no-underline
-         mb-2;
+  @apply inline-flex items-center gap-2 text-[#64748B] text-[13px] font-medium no-underline mb-2;
+  transition: color 0.2s, gap 0.2s;
+}
+
+.cover-hero__back:hover {
+  @apply text-[#94A3B8];
+  gap: 10px;
 }
 
 .cover-hero__category {
-  @apply text-[#177DAD] text-xs font-semibold tracking-[0.15em] uppercase
-         bg-[#177DAD]/10 border border-[#177DAD]/30
-         px-3 py-1 rounded-full w-fit;
+  @apply text-[#3B82F6] text-[11px] font-bold tracking-[0.16em] uppercase bg-[#2563EB]/10 border border-[#2563EB]/30 px-3 py-1 rounded-md w-fit;
 }
 
 .cover-hero__title {
-  @apply text-white text-3xl md:text-4xl font-bold leading-tight max-w-[700px];
+  @apply text-[#F1F5F9] text-3xl md:text-4xl font-extrabold leading-tight max-w-[720px] tracking-tight;
 }
 
 .cover-hero__meta {
-  @apply flex items-center flex-wrap gap-2 text-[#94A3B8] text-sm;
+  @apply flex items-center flex-wrap gap-2 text-[#64748B] text-[13px];
 }
 
 .cover-hero__meta-item {
@@ -125,81 +108,74 @@
 }
 
 .cover-hero__meta-divider {
-  @apply w-px h-3 bg-[#334155];
+  @apply w-px h-3 bg-white/10;
 }
-
 
 /* ─────────────────────────────────────────
    POST BODY LAYOUT
 ───────────────────────────────────────── */
 
 .post-body {
-  @apply max-w-[1280px] mx-auto px-6 py-14;
+  @apply max-w-[1280px] mx-auto px-6 py-16;
 }
 
 .post-article {
   @apply max-w-[740px] mx-auto;
 }
 
-
 /* ─────────────────────────────────────────
-   CONTENT RENDERER WRAPPER
+   CONTENT RENDERER
 ───────────────────────────────────────── */
 
 .content-body {
-  @apply flex flex-col gap-6;
+  @apply flex flex-col gap-7;
 }
-
 
 /* ─────────────────────────────────────────
    BLOCK: IMAGE
 ───────────────────────────────────────── */
 
 .block-image {
-  @apply w-full my-4 flex flex-col gap-3;
+  @apply w-full my-2 flex flex-col gap-3;
 }
 
 .block-image__frame {
-  @apply w-full rounded-xl overflow-hidden border border-[#E2E8F0];
+  @apply w-full rounded-xl overflow-hidden border border-white/[0.07];
 }
 
 .block-image__placeholder {
-  @apply w-full h-64 bg-[#F8FAFC] flex items-center justify-center;
-  background: linear-gradient(135deg, #CBD5E1 0%, #94A3B8 100%);
+  @apply w-full h-64 flex items-center justify-center;
+  background: linear-gradient(135deg, #1a2e5a 0%, #0d1d3a 100%);
 }
 
 .block-image__caption {
-  @apply text-[#64748B] text-xs text-center leading-relaxed italic;
+  @apply text-[#475569] text-xs text-center leading-relaxed italic;
 }
-
 
 /* ─────────────────────────────────────────
    BLOCK: HEADING
 ───────────────────────────────────────── */
 
 .block-heading {
-  @apply text-2xl font-bold text-[#0F172A] leading-tight mt-4;
+  @apply text-2xl font-bold text-[#F1F5F9] leading-tight mt-6 mb-1;
 }
-
 
 /* ─────────────────────────────────────────
    BLOCK: SUBHEADING
 ───────────────────────────────────────── */
 
 .block-subheading {
-  @apply text-lg font-semibold text-[#0F172A] leading-snug mt-2;
+  @apply text-[17px] font-semibold text-[#E2E8F0] leading-snug mt-4 mb-0.5;
 }
-
 
 /* ─────────────────────────────────────────
    BLOCK: PARAGRAPH
 ───────────────────────────────────────── */
 
 .block-para {
-  @apply text-[#334155] text-base;
-  line-height: 1.8;
+  @apply text-[#94A3B8] text-[15px];
+  line-height: 1.85;
 }
-
 
 /* ─────────────────────────────────────────
    BLOCK: BLOCKS GRID
@@ -218,13 +194,18 @@
 }
 
 .blocks-card {
-  @apply bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-6 flex flex-col gap-2;
+  @apply bg-[#0D1526] border border-white/[0.07] rounded-xl p-6 flex flex-col gap-2;
+  transition: border-color 0.2s;
+}
+
+.blocks-card:hover {
+  border-color: rgba(37, 99, 235, 0.3);
 }
 
 .blocks-card__subheading {
-  @apply text-[#0F172A] font-semibold text-sm;
+  @apply text-[#F1F5F9] font-semibold text-[14px];
 }
 
 .blocks-card__para {
-  @apply text-[#64748B] text-sm leading-relaxed;
+  @apply text-[#64748B] text-[13px] leading-relaxed;
 }
